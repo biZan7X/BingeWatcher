@@ -5,7 +5,7 @@ const Movie = ({ title, poster_path, overview, vote_average }) => {
 
 	return (
 		<div className="movie">
-			<img src={IMGPATH + poster_path} alt="movie image" />
+			<img src={IMGPATH + poster_path} alt="movie" />
 			<div className="movie-info">
 				<h3>{title}</h3>
 				<span>{vote_average}</span>

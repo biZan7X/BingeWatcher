@@ -12,6 +12,7 @@ const App = () => {
 
 	//& states
 	const [movies, setMovies] = useState([]);
+	const [searchValue, setSearchValue] = useState("");
 
 	//* DRY
 	const fetchData = async (api) => {
@@ -25,12 +26,36 @@ const App = () => {
 		fetchData(APIURL);
 	}, []);
 
+	const onSubmithandler = (e) => {
+		e.preventDefault();
+
+		fetchData(SEARCHAPI + searchValue);
+
+		setSearchValue("");
+	};
+
+	const renderMovies = () => {
+		if (movies.length > 0)
+			return movies.map((data, index) => <Movie key={index} {...data} />);
+
+		return <h2>Oops! we could not find anything...</h2>;
+	};
+
 	return (
 		<>
-			<div className="movie-container">
-				{movies.length > 0 &&
-					movies.map((data, index) => <Movie key={index} {...data} />)}
-			</div>
+			<header>
+				<h2>{`BingeWatcher </>`}</h2>
+				<form onSubmit={onSubmithandler}>
+					<input
+						type="text"
+						className="search"
+						placeholder="Search..."
+						value={searchValue}
+						onChange={(e) => setSearchValue(e.target.value)}
+					/>
+				</form>
+			</header>
+			<div className="movie-container">{renderMovies()}</div>
 		</>
 	);
 };

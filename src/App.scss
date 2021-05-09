@@ -32,6 +32,9 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
+	min-height: 60vh;
+	padding: 0rem 2rem;
 
 	.movie {
 		background-color: var(--secondary);
@@ -76,6 +79,45 @@ body {
 	.movie:hover {
 		.movie-overview {
 			transform: translateY(0%);
+		}
+	}
+}
+
+header {
+	width: 100%;
+	background-color: var(--secondary);
+	padding: 0rem 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.search {
+		border-radius: 1rem;
+		padding: 0.3rem 0.4rem;
+		border: 0.4rem solid var(--primary);
+		background: transparent;
+		color: white;
+		font: inherit;
+	}
+
+	.search:focus {
+		outline: none;
+	}
+
+	@media screen and (max-width: 768px) {
+		h2 {
+			font-size: large;
+		}
+
+		form {
+			width: 30%;
+
+			.search {
+				padding: 0.2rem 0.3rem;
+				border: 0.2rem solid var(--primary);
+				max-width: 100%;
+			}
 		}
 	}
 }
