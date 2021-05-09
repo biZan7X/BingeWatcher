@@ -38,7 +38,7 @@ const App = () => {
 		if (movies.length > 0)
 			return movies.map((data, index) => <Movie key={index} {...data} />);
 
-		return <h2>Oops! we could not find anything...</h2>;
+		return <h2 className="no-search">Oops! we could not find anything...</h2>;
 	};
 
 	return (

@@ -32,9 +32,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center;
-	min-height: 60vh;
-	padding: 0rem 2rem;
+	text-align: center;
 
 	.movie {
 		background-color: var(--secondary);
@@ -61,6 +59,24 @@ body {
 				margin: 0;
 				margin-right: 0.5rem;
 			}
+
+			.vote {
+				background-color: var(--primary);
+				padding: 0.3rem;
+				border-radius: 0.4rem;
+			}
+
+			.green {
+				color: rgb(46, 235, 46);
+			}
+
+			.orange {
+				color: orange;
+			}
+
+			.red {
+				color: red;
+			}
 		}
 
 		.movie-overview {
@@ -80,6 +96,11 @@ body {
 		.movie-overview {
 			transform: translateY(0%);
 		}
+	}
+
+	.no-search {
+		margin-top: 25vh;
+		padding: 0rem 1rem;
 	}
 }
 
