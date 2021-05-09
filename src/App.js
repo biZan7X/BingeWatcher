@@ -30,7 +30,12 @@ const App = () => {
 	const onSubmithandler = (e) => {
 		e.preventDefault();
 
-		fetchData(SEARCHAPI + searchValue);
+		const text = searchValue.trim();
+
+		if (text === "" || text === " ")
+			return alert("Please type something to search...");
+
+		fetchData(SEARCHAPI + text);
 
 		setSearchValue("");
 	};
