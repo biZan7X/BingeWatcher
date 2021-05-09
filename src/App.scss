@@ -115,6 +115,10 @@ header {
 	align-items: center;
 	justify-content: space-between;
 
+	.logo {
+		height: 4vh;
+	}
+
 	.search {
 		border-radius: 1rem;
 		padding: 0.3rem 0.4rem;
@@ -131,6 +135,10 @@ header {
 	@media screen and (max-width: 768px) {
 		h2 {
 			font-size: large;
+		}
+
+		.logo {
+			height: 2.5vh;
 		}
 
 		form {

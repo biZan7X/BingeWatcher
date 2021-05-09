@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.scss";
 //& component
 import Movie from "./components/Movie";
+import logo from "./logo.png";
 
 const App = () => {
 	//& APIs
@@ -44,7 +45,9 @@ const App = () => {
 	return (
 		<>
 			<header>
-				<h2>{`BingeWatcher </>`}</h2>
+				<h2>
+					{`BingeWatcher`} <img src={logo} alt="logo" className="logo" />{" "}
+				</h2>
 				<form onSubmit={onSubmithandler}>
 					<input
 						type="text"
