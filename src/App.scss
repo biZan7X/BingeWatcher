@@ -45,7 +45,14 @@ body {
 		position: relative;
 		cursor: pointer;
 
-		img {
+		.icon-bookmark {
+			position: absolute;
+			top: 0;
+			right: 8%;
+			z-index: 2;
+		}
+
+		.image {
 			width: 100%;
 			object-fit: cover;
 			height: 400px;
@@ -82,8 +89,8 @@ body {
 		}
 
 		.movie-overview {
-			background-color: white;
-			color: black;
+			background-color: black;
+			color: white;
 			position: absolute;
 			bottom: 0;
 			padding: 1rem;
@@ -114,6 +121,13 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	a {
+		color: white;
+	}
+	a:active {
+		color: goldenrod;
+	}
 
 	.logo {
 		height: 4vh;

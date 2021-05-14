@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import "./App.scss";
 //& component
 import Movie from "./components/Movie";
-import logo from "./logo.png";
+import logo from "./icons/logo.png";
+//& icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark, faHome } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
 	//& APIs
@@ -14,6 +18,7 @@ const App = () => {
 	//& states
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
+	const [bookMarks, setBookMarks] = useState([]);
 
 	//* DRY
 	const fetchData = async (api) => {
@@ -25,7 +30,14 @@ const App = () => {
 	//? componentDidMount
 	useEffect(() => {
 		fetchData(APIURL);
+		//* fetching the bookmarks from the local storage
+		setBookMarks(JSON.parse(localStorage.getItem("bookMarks")) || []);
 	}, []);
+
+	useEffect(() => {
+		//* setting the localStorage
+		localStorage.setItem("bookMarks", JSON.stringify(bookMarks));
+	}, [bookMarks]);
 
 	const onSubmithandler = (e) => {
 		e.preventDefault();
@@ -40,19 +52,60 @@ const App = () => {
 		setSearchValue("");
 	};
 
-	const renderMovies = () => {
+	const RenderMovies = () => {
 		if (movies.length > 0)
-			return movies.map((data, index) => <Movie key={index} {...data} />);
+			return movies.map((data, index) => (
+				<Movie
+					key={index}
+					setBookMarks={setBookMarks}
+					bookMarks={bookMarks}
+					{...data}
+				/>
+			));
 
 		return <h2 className="no-search">Oops! we could not find anything...</h2>;
 	};
 
+	const RenderBookMarks = () => {
+		if (bookMarks.length > 0)
+			return bookMarks.map((data, index) => (
+				<Movie
+					key={index}
+					setBookMarks={setBookMarks}
+					bookMarks={bookMarks}
+					{...data}
+				/>
+			));
+
+		return (
+			<h2 className="no-search">
+				Oops! you have not bookmarked any movies yet...
+			</h2>
+		);
+	};
+
 	return (
-		<>
+		<BrowserRouter>
 			<header>
 				<h2>
 					{`BingeWatcher`} <img src={logo} alt="logo" className="logo" />{" "}
 				</h2>
+
+				<Link to="/">
+					<FontAwesomeIcon
+						className="icon-bookmark"
+						icon={faHome}
+						size="2x"
+					/>
+				</Link>
+				<Link to="/bookmarks">
+					<FontAwesomeIcon
+						className="icon-bookmark"
+						icon={faBookmark}
+						size="2x"
+					/>
+				</Link>
+
 				<form onSubmit={onSubmithandler}>
 					<input
 						type="text"
@@ -63,8 +116,11 @@ const App = () => {
 					/>
 				</form>
 			</header>
-			<div className="movie-container">{renderMovies()}</div>
-		</>
+			<div className="movie-container">
+				<Route path="/" exact component={RenderMovies} />
+				<Route path="/bookmarks" component={RenderBookMarks} />
+			</div>
+		</BrowserRouter>
 	);
 };
 
